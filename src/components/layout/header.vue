@@ -107,3 +107,9 @@ onBeforeUnmount(() => {
     </div>
   </nav>
 </template>
+
+<style scoped>
+nav {
+  font-family: 'Poppins', sans-serif;
+}
+</style>
