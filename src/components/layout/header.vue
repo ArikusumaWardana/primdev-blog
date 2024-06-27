@@ -54,7 +54,7 @@ onBeforeUnmount(() => {
       <!-- Left section: Website name -->
       <div class="flex items-center space-x-4">
         <img :src="Logo" alt="Logo" class="h-8 w-8">
-        <span class="text-xl font-bold">Digital Tales</span>
+        <span class="text-xl font-bold uppercase">Digital Tales</span>
       </div>
 
       <!-- Middle section: Menu items -->
