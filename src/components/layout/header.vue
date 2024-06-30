@@ -87,7 +87,7 @@ onBeforeUnmount(() => {
             <i class="fas fa-search"></i>
           </button>
         </form>
-        <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Login</button>
+        <router-link to="/auth/login" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Login</router-link>
         <button @click="toggleDarkMode" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded w-12 text-center">
           <i :class="isDarkMode ? 'fas fa-sun' : 'fas fa-moon'"></i>
         </button>
