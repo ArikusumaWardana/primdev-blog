@@ -1,4 +1,5 @@
 import Login from '@/views/pages/auth/login.vue'
+import Register from '@/views/pages/auth/register.vue'
 import Home from '@/views/pages/home.vue'
 import AuthTemplates from '@/views/templates/authTemplates.vue'
 import AuthorTemplates from '@/views/templates/authorTemplates.vue'
@@ -36,6 +37,14 @@ const routes = [
         component: Login,
         meta: {
           title: 'Login'
+        }
+      },
+      {
+        path: '/auth/register',
+        name: 'register-page',
+        component: Register,
+        meta: {
+          title: 'Register'
         }
       }
     ] 
