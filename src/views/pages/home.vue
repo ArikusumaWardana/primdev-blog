@@ -1,5 +1,6 @@
 <script setup>
 import backgroundImage from '@/assets/jumbotron/jumbotron.jpg'
+import { truncateText } from '@/helper/globalVariable'
 
 // Dummy data for card
 const recentBlogs = [
@@ -30,13 +31,6 @@ const recentBlogs = [
   },
 ]
 
-// Function to truncate text to a specified length
-const truncateText = (text, length) => {
-  // If the text is shorter than or equal to the desired length, return the original text
-  if (text.length <= length) return text;
-  // Otherwise, truncate the text to the desired length and add an ellipsis
-  return text.slice(0, length) + '...';
-}
 
 </script>
 
