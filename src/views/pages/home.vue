@@ -30,11 +30,14 @@ const recentBlogs = [
   },
 ]
 
-// Fungsi untuk melakukan truncate pada card desc
+// Function to truncate text to a specified length
 const truncateText = (text, length) => {
-  if (text.length <= length) return text
-  return text.slice(0, length) + '...'
+  // If the text is shorter than or equal to the desired length, return the original text
+  if (text.length <= length) return text;
+  // Otherwise, truncate the text to the desired length and add an ellipsis
+  return text.slice(0, length) + '...';
 }
+
 </script>
 
 <template>

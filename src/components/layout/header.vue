@@ -2,49 +2,66 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import Logo from '@/assets/logo/logo.png'
 
+// Reactive variable to track whether the menu is open
 const isMenuOpen = ref(false)
+
+// Reactive variable to track whether dark mode is enabled
 const isDarkMode = ref(false)
+
+// Reactive variable to track whether the user has scrolled down the page
 const isScrolled = ref(false)
 
-// List Menu yang isi pada navbar
+// List of menu items for the navbar
 const navMenu = ref([
   { name: 'Home', route: '/', icon: 'fas fa-home' },
   { name: 'Blog', route: '/blog', icon: 'fas fa-blog' },
   { name: 'About', route: '/about', icon: 'fas fa-info-circle' },
 ])
 
+// Function to toggle the menu's visibility
 function toggleMenu() {
   isMenuOpen.value = !isMenuOpen.value
 }
 
+// Function to toggle dark mode
 function toggleDarkMode() {
   isDarkMode.value = !isDarkMode.value
   if (isDarkMode.value) {
+    // Add 'dark' class to the document element for dark mode styling
     document.documentElement.classList.add('dark')
+    // Store the theme preference in local storage
     localStorage.setItem('theme', 'dark')
   } else {
+    // Remove 'dark' class from the document element for light mode styling
     document.documentElement.classList.remove('dark')
+    // Store the theme preference in local storage
     localStorage.setItem('theme', 'light')
   }
 }
 
+// Function to handle scroll events and update isScrolled
 function handleScroll() {
   isScrolled.value = window.scrollY > 0
 }
 
-// Check local storage for theme preference
+// Hook that runs when the component is mounted
 onMounted(() => {
+  // Check if a theme preference is stored in local storage
   const savedTheme = localStorage.getItem('theme')
   if (savedTheme === 'dark') {
     isDarkMode.value = true
     document.documentElement.classList.add('dark')
   }
+  // Add an event listener for scroll events
   window.addEventListener('scroll', handleScroll)
 })
 
+// Hook that runs before the component is unmounted
 onBeforeUnmount(() => {
+  // Remove the scroll event listener to prevent memory leaks
   window.removeEventListener('scroll', handleScroll)
 })
+
 </script>
 
 <template>
