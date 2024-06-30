@@ -120,7 +120,7 @@ onBeforeUnmount(() => {
           <span>{{ data.name }}</span>
         </router-link>
       </div>     
-      <router-link to="/login" class="block px-4 py-2 hover:bg-blue-600 bg-blue-500 space-x-2 w-full"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</router-link>
+      <router-link to="/auth/login" class="block px-4 py-2 hover:bg-blue-600 bg-blue-500 space-x-2 w-full"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</router-link>
     </div>
   </nav>
 </template>
