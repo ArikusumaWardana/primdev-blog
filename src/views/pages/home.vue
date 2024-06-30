@@ -55,7 +55,7 @@ const truncateText = (text, length) => {
         <h2 class="text-3xl md:text-4xl font-bold mb-8 text-left dark:text-white text-gray-700">Recent Blog Posts</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div v-for="(blog, index) in recentBlogs" :key="index" class="flex dark:bg-gray-800 bg-gray-100 p-4 rounded-lg shadow-md">
-            <img :src="blog.image" alt="Blog Image" class="w-1/3 h-20 object-cover rounded-lg mr-4">
+            <img :src="backgroundImage" alt="Blog Image" class="w-1/3 h-full object-cover rounded-lg mr-4">
             <div class="w-2/3">
               <h3 class="text-xl font-semibold mb-2">{{ blog.title }}</h3>
               <p class="text-gray-400">{{ truncateText(blog.excerpt, 80) }}</p>
