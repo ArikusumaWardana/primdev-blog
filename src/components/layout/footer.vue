@@ -1,5 +1,5 @@
 <script setup>
-import{ ref } from 'vue'
+import { ref } from 'vue'
 
 // Array of navigation links, used for creating a navigation menu
 const navigations = ref([
