@@ -1,20 +1,20 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700">
-    <div class="bg-white p-8 rounded-lg shadow-2xl w-full max-w-sm mx-4">
-      <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Login</h2>
+  <div class="min-h-screen flex items-center justify-center dark:bg-gray-900">
+    <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg shadow-2xl w-full max-w-sm mx-4">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center dark:text-white">Login</h2>
       <form @submit.prevent="" class="text-sm">
         <div class="mb-4">
-          <label for="email" class="block text-gray-600 text-sm font-bold mb-2">Email</label>
+          <label for="email" class="block text-gray-600 dark:text-white text-sm font-bold mb-2">Email</label>
           <div class="flex items-center border-b-2 border-gray-300 py-2">
             <i class="fas fa-envelope text-gray-400 mr-2"></i>
-            <input type="email" id="email" class="appearance-none bg-transparent border-none w-full text-gray-700 leading-tight focus:outline-none focus:border-blue-500" placeholder="Type your email" required>
+            <input type="email" id="email" class="appearance-none bg-transparent border-none w-full dark:text-gray-200 text-gray-700 leading-tight focus:outline-none focus:border-blue-500" placeholder="Type your email" required>
           </div>
         </div>
         <div class="mb-6">
-          <label for="password" class="block text-gray-600 text-sm font-bold mb-2">Password</label>
+          <label for="password" class="block text-gray-600 dark:text-white text-sm font-bold mb-2">Password</label>
           <div class="flex items-center border-b-2 border-gray-300 py-2">
             <i class="fas fa-lock text-gray-400 mr-2"></i>
-            <input type="password" id="password" class="appearance-none bg-transparent border-none w-full text-gray-700 leading-tight focus:outline-none focus:border-blue-500" placeholder="Type your password" required>
+            <input type="password" id="password" class="appearance-none bg-transparent border-none w-full dark:text-gray-200 text-gray-700 leading-tight focus:outline-none focus:border-blue-500" placeholder="Type your password" required>
           </div>
         </div>
         <div class="flex items-center justify-between mb-6">
@@ -22,7 +22,7 @@
             LOGIN
           </button>
         </div>
-        <div class="text-center text-gray-500 text-sm">
+        <div class="text-center dark:text-gray-200 text-gray-500 text-sm">
           Don't have account? 
           <router-link to="/auth/register" class="text-blue-500 hover:text-blue-700 font-bold">Register</router-link>
         </div>
