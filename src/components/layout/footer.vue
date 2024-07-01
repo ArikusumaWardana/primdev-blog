@@ -23,7 +23,7 @@ const socialMedia = ref([
 </script>
 
 <template>
-  <footer class="bg-gray-800 text-white py-8">
+  <footer class="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-white py-8">
     <div class="container mx-auto px-4 md:px-8 lg:px-16">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div>
