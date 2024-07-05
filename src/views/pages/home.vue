@@ -55,7 +55,7 @@ const recentBlogs = [
             <img :src="backgroundImage" alt="Blog Image" class="w-1/3 h-full object-cover rounded-lg mr-4">
             <div class="w-2/3">
               <h3 class="text-xl font-semibold mb-2">{{ blog.title }}</h3>
-              <p class="text-gray-400">{{ truncateText(blog.excerpt, 80) }}</p>
+              <p class="text-gray-500 dark:text-gray-400">{{ truncateText(blog.excerpt, 80) }}</p>
             </div>
           </div>
         </div>
