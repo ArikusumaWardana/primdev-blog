@@ -1,5 +1,6 @@
-<script>
+<script setup>
     import { useRoute } from 'vue-router';
+    import { defineProps } from 'vue';
     import { truncateText } from '@/helper/globalVariable'
 
     const props = defineProps({
@@ -12,7 +13,7 @@
 </script>
 
 <template>
-    <router-link class="flex dark:bg-gray-800 bg-gray-100 p-4 rounded-lg shadow-md">
+    <router-link :to="'/blog/' + props.blog_id" class="flex dark:bg-gray-800 bg-gray-100 p-4 rounded-lg shadow-md">
         <img :src="props.image" :alt="props.title" class="w-1/3 h-full object-cover rounded-lg mr-4">
         <div class="w-2/3">
             <h3 class="text-xl font-semibold mb-2">{{ truncateText(props.title, 18) }}</h3>
