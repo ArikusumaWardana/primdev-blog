@@ -1,7 +1,6 @@
 <script setup>
 import Card from '@/components/card.vue'
 import backgroundImage from '@/assets/jumbotron/jumbotron.jpg'
-import { truncateText } from '@/helper/globalVariable'
 
 // Dummy data for card
 const recentBlogs = [
