@@ -39,6 +39,9 @@ const routes = [
     path: '/auth',
     name: 'auth',
     component: AuthTemplates,
+    meta: {
+      isAuth: false
+    },
     children: [
       {
         path: '/auth/login',
@@ -64,5 +67,17 @@ const router = createRouter({
   history: createWebHistory(),
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.isAuth)) {
+    let user = localStorage.getItem('token')
+    // console.log(user);
+    if (!user) {
+      next('auth/login');
+    } 
+  }
+  next()
+});
+
 
 export default router
