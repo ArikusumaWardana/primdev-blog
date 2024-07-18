@@ -1,36 +1,25 @@
+<script setup>
+  import baseInput from '@/components/baseInput.vue';
+  import {reactive, ref} from 'vue';
+  import axios from 'axios';
+
+  const registerForm = reactive({
+    username: '',
+    email: '',
+    password: '',
+    repeatPassword: ''
+  });
+</script>
+
 <template>
     <div class="min-h-screen flex items-center justify-center dark:bg-gray-900">
       <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg shadow-2xl w-full max-w-sm mx-4">
         <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center dark:text-white">Register</h2>
         <form @submit.prevent="" class="text-sm">
-          <div class="mb-4">
-            <label for="username" class="block text-gray-600 dark:text-white text-sm font-bold mb-2">Username</label>
-            <div class="flex items-center border-b-2 border-gray-300 py-2">
-              <i class="fas fa-user text-gray-400 mr-2"></i>
-              <input type="text" id="username" class="appearance-none bg-transparent border-none w-full dark:text-gray-200 text-gray-700 leading-tight focus:outline-none focus:border-blue-500" placeholder="Type your username" required>
-            </div>
-          </div>
-          <div class="mb-4">
-            <label for="email" class="block text-gray-600 dark:text-white text-sm font-bold mb-2">Email</label>
-            <div class="flex items-center border-b-2 border-gray-300 py-2">
-              <i class="fas fa-envelope text-gray-400 mr-2"></i>
-              <input type="email" id="email" class="appearance-none bg-transparent border-none w-full dark:text-gray-200 text-gray-700 leading-tight focus:outline-none focus:border-blue-500" placeholder="Type your email" required>
-            </div>
-          </div>
-          <div class="mb-4">
-            <label for="password" class="block text-gray-600 dark:text-white text-sm font-bold mb-2">Password</label>
-            <div class="flex items-center border-b-2 border-gray-300 py-2">
-              <i class="fas fa-lock text-gray-400 mr-2"></i>
-              <input type="password" id="password" class="appearance-none bg-transparent border-none w-full dark:text-gray-200 text-gray-700 leading-tight focus:outline-none focus:border-blue-500" placeholder="Type your password" required>
-            </div>
-          </div>
-          <div class="mb-6">
-            <label for="repeatPassword" class="block text-gray-600 dark:text-white text-sm font-bold mb-2">Repeat Password</label>
-            <div class="flex items-center border-b-2 border-gray-300 py-2">
-              <i class="fas fa-repeat text-gray-400 mr-2"></i>
-              <input type="repeatPassword" id="repeatPassword" class="appearance-none bg-transparent border-none w-full dark:text-gray-200 text-gray-700 leading-tight focus:outline-none focus:border-blue-500" placeholder="Repeat your password" required>
-            </div>
-          </div>
+          <base-input v-model="registerForm.username" input-title="Username" input-name="username" input-placeholder="Type your username" input-icon="fas fa-user"></base-input>
+          <base-input v-model="registerForm.email" input-title="Email" input-name="email" input-placeholder="Type your email" input-icon="fas fa-envelope" input-type="email"></base-input>
+          <base-input v-model="registerForm.password" input-title="Password" input-name="password" input-placeholder="Type your password" input-icon="fas fa-lock" input-type="password"></base-input>
+          <base-input v-model="registerForm.repeatPassword" input-title="Repeat Password" input-name="repeatPassword" input-placeholder="Repeat your password" input-icon="fas fa-repeat" input-type="password"></base-input>
           <div class="flex items-center justify-between mb-6">
             <button type="submit" class="w-full py-2 px-4 rounded-lg bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white font-bold focus:outline-none focus:ring focus:ring-blue-500 uppercase">
               Register
