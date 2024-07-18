@@ -1,6 +1,7 @@
 import Login from '@/views/pages/auth/login.vue'
 import Register from '@/views/pages/auth/register.vue'
 import Home from '@/views/pages/home.vue'
+import Blog from '@/views/pages/blog.vue'
 import AuthTemplates from '@/views/templates/authTemplates.vue'
 import AuthorTemplates from '@/views/templates/authorTemplates.vue'
 import UserTemplates from '@/views/templates/userTemplates.vue'
@@ -17,6 +18,14 @@ const routes = [
         component: Home,
         meta: {
           title: 'Home'
+        }
+      },
+      {
+        path: '/blog',
+        name: 'blog-page',
+        component: Blog,
+        meta: {
+          title: 'Blog'
         }
       }
     ]
