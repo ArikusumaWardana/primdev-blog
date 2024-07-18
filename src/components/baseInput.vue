@@ -15,12 +15,13 @@
         <div class="flex items-center border-b-2 border-gray-300 py-2">
             <i :class="props.inputIcon + ' text-gray-400 mr-2'"></i>
             <input 
-            :type="props.inputType" 
+            :type="props.inputType"
+            :name="props.inputName"
             class="appearance-none bg-transparent border-none w-full dark:text-gray-200 text-gray-700 leading-tight focus:outline-none focus:border-blue-500" 
             :placeholder="props.inputPlaceholder"  
             :value="props.modelValue"
             @input="$emit('update:modelValue', $event.target.value)"
-            required>
+            />
         </div>
     </div>
 </template>
