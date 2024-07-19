@@ -1,9 +1,13 @@
 <script setup>
-import { truncateText } from '@/helper/globalVariable';
+import { truncateText, BASE_URL, token } from '@/helper/globalVariable';
 import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router'
+import axios from 'axios'
+
+const router = useRoute().name
 
 const props = defineProps({
-    blog_id: Number,
+    blogId: Number,
     title: String,
     slug: String,
     image: String,
@@ -25,6 +29,29 @@ const updateTruncateLength = () => {
     }
 };
 
+const deleteBlog = async () => {
+  if(confirm('Are you sure want to delete this blog?')) {
+    try {
+    const response = await axios.post(
+      BASE_URL + 'blog/' + props.blogId,
+      {
+        _method: 'delete'
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    )
+    if (response.status === 200) {
+      location.reload()
+    }
+  } catch (error) {
+    console.log(error)
+  }
+  }
+}
+
 // Listen to window resize event to dynamically update truncate length
 onMounted(() => {
     updateTruncateLength();
@@ -34,13 +61,27 @@ onMounted(() => {
 </script>
 
 <template>
-    <router-link :to="props.route" class="card flex flex-col sm:flex-row dark:bg-gray-800 bg-gray-100 p-4 rounded-lg shadow-md">
+    <router-link v-show="router !== 'dashboard'" :to="props.route" class="card flex flex-col sm:flex-row dark:bg-gray-800 bg-gray-100 p-4 rounded-lg shadow-md">
         <img :src="props.image" :alt="props.title" class="w-full sm:w-1/3 h-48 sm:h-full object-cover rounded-lg mr-0 sm:mr-4 mb-4 sm:mb-0">
         <div class="w-full sm:w-2/3">
             <h3 class="text-xl font-semibold mb-2 dark:text-white">{{ props.title }}</h3>
             <p class="text-gray-500 dark:text-gray-400">{{ truncateText(props.content, truncateLength) }}</p>
         </div>
     </router-link>
+
+    <div v-show="router == 'dashboard'" class="card dark:bg-gray-800 bg-gray-100 p-4 rounded-lg shadow-md">
+        <div class="flex flex-col sm:flex-row">
+            <img :src="props.image" :alt="props.title" class="w-full sm:w-1/3 h-48 sm:h-full object-cover rounded-lg mr-0 sm:mr-4 mb-4 sm:mb-0">
+            <div class="w-full sm:w-2/3">
+                <h3 class="text-xl font-semibold mb-2 dark:text-white">{{ props.title }}</h3>
+                <p class="text-gray-500 dark:text-gray-400">{{ truncateText(props.content, truncateLength) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center space-x-2 mt-4">
+            <router-link :to="props.route" class="px-2 py-1 bg-yellow-500 text-white rounded">Update</router-link>
+            <button class="px-2 py-1 bg-red-500 text-white rounded" @click="deleteBlog">Delete</button>
+        </div>
+    </div>
 </template>
 
 <style scoped>
