@@ -101,8 +101,7 @@ const shareToFacebook = () => {
         <div v-else-if="blogDetail" class="p-6 mb-8 border-b-2 dark:border-gray-800 border-gray-300">
           <!-- Blog Details -->
           <h1 class="text-3xl font-bold mb-2 dark:text-white">{{ blogDetail.title }}</h1>
-          <p class="text-gray-500 dark:text-gray-400 mb-4 flex items-center justify-between">
-            By: {{ blogDetail.author }}
+          <p class="text-gray-500 dark:text-gray-400 mb-4 flex items-center justify-end">
             <div class="ml-4 flex space-x-2">
               <button @click="shareToWhatsApp" class="text-green-500 hover:text-green-600 dark:bg-gray-700 bg-gray-200 rounded-lg py-1 px-2">
                 <i class="fab fa-whatsapp"></i>
@@ -130,7 +129,7 @@ const shareToFacebook = () => {
                 v-else
                 :key="blog.id" 
                 :title="blog.title" 
-                :to="'/blog/' + blog.slug"
+                :route="'/blog/' + blog.slug"
                 :image="blog.image" 
                 :content="blog.content" 
             />
@@ -150,7 +149,7 @@ const shareToFacebook = () => {
                 v-else
                 :key="blog.id" 
                 :title="blog.title"
-                :to="'/blog/' + blog.slug"
+                :route="'/blog/' + blog.slug"
                 :image="blog.image" 
                 :content="blog.content" 
             />

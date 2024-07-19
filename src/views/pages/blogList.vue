@@ -38,7 +38,7 @@ onMounted(() => {
         <Card v-for="blog in blogs" 
         :key="blog.id" 
         :title="blog.title" 
-        :to="'blog/' + blog.slug"
+        :route="'blog/' + blog.slug"
         :image="blog.image" 
         :content="blog.content" />
       </div>
