@@ -16,13 +16,21 @@ import router from '@/router/routes'
   const isLoading = ref(false)
 
 const register = async () => {
+
+  // Check for empty fields
+  if (!inputData.name || !inputData.email || !inputData.password || !inputData.confirm_password) {
+    alert('All fields are required!');
+    return;
+  }
+
+  // Check if passwords match
   if (inputData.confirm_password == inputData.password) {
     isLoading.value = true
     try {
       const response = await axios.post(BASE_URL + 'register', inputData);
       if (response.status == 200) {
         localStorage.setItem('token', response.data.token)
-        alert('Success Registered')
+        alert('Successfully Registered!')
         router.push('/auth/login')
       }
     } catch (error) {
@@ -31,7 +39,7 @@ const register = async () => {
       isLoading.value = false
     }
   } else {
-    console.log('Confirm Password dan Password tidak sama')
+    alert('Confirm Password and Password do not match.')
   }
 }
 
