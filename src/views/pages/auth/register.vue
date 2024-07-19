@@ -22,6 +22,7 @@ const register = async () => {
       const response = await axios.post(BASE_URL + 'register', inputData);
       if (response.status == 200) {
         localStorage.setItem('token', response.data.token)
+        localStorage.setItem('name', inputData.name)
         router.push('/auth/login')
         console.log(response)
       }
