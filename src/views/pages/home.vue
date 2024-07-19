@@ -1,27 +1,31 @@
 <script setup>
-import { ref, onMounted } from 'vue'
-import axios from 'axios'
-import Card from '@/components/card.vue'
-import backgroundImage from '@/assets/jumbotron/jumbotron.jpg'
-import { BASE_URL } from '@/helper/globalVariable'
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+import Card from '@/components/card.vue';
+import backgroundImage from '@/assets/jumbotron/jumbotron.jpg';
+import SkeletonCard from '@/components/skeletonCard.vue';
+import { BASE_URL } from '@/helper/globalVariable';
 
 const recentBlogs = ref([]);
+const isLoading = ref(false);
 
 const fetchRecentBlog = async () => {
+  isLoading.value = true;
   try {
-    const response = await axios.get(BASE_URL + 'blog')
-    if(response.status == 200) {
-      recentBlogs.value = response.data.slice(0,6)
+    const response = await axios.get(BASE_URL + 'blog');
+    if (response.status === 200) {
+      recentBlogs.value = response.data.slice(0, 6);
     }
-  } catch(error) {
-    console.log(error)
+  } catch (error) {
+    console.log(error);
+  } finally {
+    isLoading.value = false;
   }
-}
+};
 
 onMounted(() => {
   fetchRecentBlog();
-})
-
+});
 </script>
 
 <template>
@@ -41,10 +45,15 @@ onMounted(() => {
       <div class="container mx-auto px-8 lg:px-16">
         <h2 class="text-3xl md:text-4xl font-bold mb-8 text-left dark:text-white text-gray-700">Recent Blog Posts</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Display Skeleton Loaders while data is loading -->
+          <SkeletonCard v-if="isLoading" v-for="n in 6" :key="n" />
+
+          <!-- Display actual cards when data is available -->
           <Card v-for="blog in recentBlogs" 
           :key="blog.title" 
           :title="blog.title" 
-          :image= "blog.image" 
+          :to="'/blog/' + blog.slug" 
+          :image="blog.image" 
           :content="blog.content" />
         </div>
       </div>
@@ -64,4 +73,5 @@ h2, h3 {
 .btn-jumbotron {
   font-family: "Poppins", sans-serif;
 }
+
 </style>
