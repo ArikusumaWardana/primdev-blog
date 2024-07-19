@@ -30,9 +30,10 @@ const routes = [
         }
       },
       {
-        path: '/blog',
+        path: '/blog/:slug',
         name: 'blog',
         component: Blog,
+        props: true,
         meta: {
           title: 'Blog'
         }
@@ -76,6 +77,10 @@ const router = createRouter({
   history: createWebHistory(),
   routes
 })
+
+router.afterEach(() => {
+  window.scrollTo(0, 0);
+});
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.isAuth)) {
