@@ -16,6 +16,9 @@ const routes = [
     path: '/',
     name: 'home',
     component: UserTemplates,
+    meta: {
+      isAuth: true
+    },
     children: [
       {
         path: '/',
@@ -128,6 +131,7 @@ router.beforeEach((to, from, next) => {
     let user = localStorage.getItem('token')
     // console.log(user);
     if (!user) {
+      alert('Login first!')
       next('auth/login');
     } 
   }
