@@ -2,7 +2,11 @@ import Login from '@/views/pages/auth/login.vue'
 import Register from '@/views/pages/auth/register.vue'
 import Home from '@/views/pages/home.vue'
 import BlogList from '@/views/pages/blogList.vue'
+import Search from '@/views/pages/search.vue'
 import Blog from '@/views/pages/blog.vue'
+import Dashboard from '@/views/pages/author/dashboard.vue'
+import createBlog from '@/views/pages/author/createBlog.vue'
+import updateBlog from '@/views/pages/author/updateBlog.vue'
 import AuthTemplates from '@/views/templates/authTemplates.vue'
 import AuthorTemplates from '@/views/templates/authorTemplates.vue'
 import UserTemplates from '@/views/templates/userTemplates.vue'
@@ -30,6 +34,14 @@ const routes = [
         }
       },
       {
+        path: '/search',
+        name: 'search',
+        component: Search,
+        meta: {
+          title: 'Search'
+        }
+      },
+      {
         path: '/blog/:slug',
         name: 'blog',
         component: Blog,
@@ -43,7 +55,36 @@ const routes = [
   {
     path: '/dashboard',
     name: 'dashboard',
-    component: AuthorTemplates
+    component: AuthorTemplates,
+    meta: {
+      isAuth: true
+    },
+    children: [
+      {
+        path: '/dashboard',
+        name: 'dashboard',
+        component: Dashboard,
+        meta: {
+          title: 'Dashboard'
+        }
+      },
+      {
+        path: '/dashboard/blog/create',
+        name: 'create-blog',
+        component: createBlog,
+        meta: {
+          title: 'Create Blog'
+        }
+      },
+      {
+        path: '/dashboard/blog/update/:slug',
+        name: 'update-blog',
+        component: updateBlog,
+        meta: {
+          title: 'Update Blog'
+        }
+      }
+    ]
   },
   {
     path: '/auth',
