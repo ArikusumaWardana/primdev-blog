@@ -14,6 +14,13 @@
 
   const login = async () => {
     isLoading.value = true
+
+    // Check for empty fields
+    if (!inputData.email || !inputData.password) {
+      alert('All fields are required!');
+      return;
+    }
+
     try {
       const response = await axios.post(BASE_URL + 'login', inputData)
       if (response.status == 200) {
