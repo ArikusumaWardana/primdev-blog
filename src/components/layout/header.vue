@@ -20,7 +20,7 @@ const userName = ref(localStorage.getItem('name'))
 // List of menu items for the navbar
 const navMenu = ref([
   { name: 'Home', route: '/', icon: 'fas fa-home' },
-  { name: 'Blog', route: '/blog', icon: 'fas fa-blog' },
+  { name: 'Blog List', route: '/blog-list', icon: 'fas fa-blog' },
   { name: 'About', route: '/about', icon: 'fas fa-info-circle' },
 ])
 
@@ -79,23 +79,23 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <nav :class="['fixed top-0 w-full z-50 transition-colors duration-300', isScrolled ? 'bg-gray-800' : 'bg-transparent']">
+  <nav :class="['fixed top-0 w-full z-50 transition-colors duration-300', isScrolled ? 'dark:bg-gray-800 bg-gray-100' : 'bg-transparent']">
     <div class="container mx-auto px-4 flex justify-between items-center py-4 text-white">
       <!-- Left section: Website name -->
       <div class="flex items-center space-x-4">
         <img :src="Logo" alt="Logo" class="h-8 w-8">
-        <span class="text-xl font-bold uppercase">Digital Tales</span>
+        <span class="text-xl font-bold uppercase dark:text-white text-gray-500">Digital Tales</span>
       </div>
 
       <!-- Middle section: Menu items -->
       <div class="hidden md:flex space-x-4">
-        <router-link v-for="(data, index) in navMenu" :key="index" :to="data.route" class="px-4 py-2 rounded hover:bg-blue-600">{{ data.name }}</router-link>
+        <router-link v-for="(data, index) in navMenu" :key="index" :to="data.route" class="px-4 py-2 rounded dark:text-white text-gray-500 hover:bg-blue-600 hover:text-white">{{ data.name }}</router-link>
       </div>
 
       <!-- Right section: Search form, dark mode toggle, and user dropdown -->
       <div class="hidden md:flex items-center space-x-4">
         <form class="relative">
-          <input type="text" placeholder="Search..." class="pl-10 pr-4 py-2 rounded bg-gray-700 placeholder-gray-400 focus:outline-none">
+          <input type="text" placeholder="Search..." class="pl-10 pr-4 py-2 rounded dark:bg-gray-700 dark:text-white bg-gray-200 text-gray-800 placeholder-gray-400 focus:outline-none">
           <button type="submit" class="absolute left-0 top-0 mt-2 ml-2 text-gray-400">
             <i class="fas fa-search"></i>
           </button>
