@@ -1,36 +1,26 @@
 <script setup>
+import { ref, onMounted } from 'vue'
+import axios from 'axios'
 import Card from '@/components/card.vue'
 import backgroundImage from '@/assets/jumbotron/jumbotron.jpg'
+import { BASE_URL } from '@/helper/globalVariable'
 
-// Dummy data for card
-const recentBlogs = [
-  {
-    title: 'The Future of Web Development',
-    image: '@/assets/blog/blog1.jpg',
-    excerpt: 'Discover the latest trends and technologies shaping the future of web development. This is a really long excerpt to demonstrate the truncation feature.',
-  },
-  {
-    title: 'A Guide to Modern JavaScript',
-    image: '@/assets/blog/blog2.jpg',
-    excerpt: 'JavaScript has evolved significantly over the years. Here\'s a guide to understanding modern JavaScript.',
-  },
-  {
-    title: 'Tips for Responsive Web Design',
-    image: '@/assets/blog/blog3.jpg',
-    excerpt: 'Responsive web design is crucial in today\'s mobile-first world. Here are some tips to get you started.',
-  },
-  {
-    title: 'Understanding Vue.js Lifecycle Hooks',
-    image: '@/assets/blog/blog4.jpg',
-    excerpt: 'Lifecycle hooks are an essential part of Vue.js. This article explains how they work and how to use them.',
-  },
-  {
-    title: 'Exploring CSS Grid',
-    image: '@/assets/blog/blog5.jpg',
-    excerpt: 'CSS Grid is a powerful layout system available in CSS. Let’s explore how it works and how you can use it.',
-  },
-]
+const recentBlogs = ref([]);
 
+const fetchRecentBlog = async () => {
+  try {
+    const response = await axios.get(BASE_URL + 'blog')
+    if(response.status == 200) {
+      recentBlogs.value = response.data.slice(0,6)
+    }
+  } catch(error) {
+    console.log(error)
+  }
+}
+
+onMounted(() => {
+  fetchRecentBlog();
+})
 
 </script>
 
@@ -42,7 +32,7 @@ const recentBlogs = [
       <div class="relative z-10 flex flex-col items-center justify-center h-full text-center text-white p-4">
         <h1 class="text-4xl md:text-6xl font-bold mb-4">Welcome to Digital Tales</h1>
         <p class="text-lg md:text-xl mb-8">Your go-to place for amazing digital stories and content</p>
-        <router-link to="/blog" class="btn-jumbotron bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg">Visit our Blog</router-link>
+        <router-link to="/blog-list" class="btn-jumbotron bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg">Visit our Blog</router-link>
       </div>
     </div>
 
@@ -54,8 +44,8 @@ const recentBlogs = [
           <Card v-for="blog in recentBlogs" 
           :key="blog.title" 
           :title="blog.title" 
-          :image= backgroundImage 
-          :content="blog.excerpt" />
+          :image= "blog.image" 
+          :content="blog.content" />
         </div>
       </div>
     </section>
