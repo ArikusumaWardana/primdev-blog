@@ -22,7 +22,7 @@ const fetchBlogs = async (query) => {
   try {
     const response = await axios.get(url, {
       headers: {
-        'Authorization': `Bearer ${token}` // Replace YOUR_API_TOKEN with your actual token
+        'Authorization': `Bearer ${token}`
       }
     });
     if (response.status === 200) {
