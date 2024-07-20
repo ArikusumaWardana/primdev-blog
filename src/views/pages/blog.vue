@@ -74,6 +74,14 @@ const shareToFacebook = () => {
   window.open(`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`, '_blank');
 };
 
+const copyToClipboard = () => {
+  navigator.clipboard.writeText(shareUrl).then(() => {
+    alert('text copied to clipboard');
+  }).catch(err => {
+    console.error('Could not copy text', err)
+  })
+}
+
 </script>
 
 <template>
@@ -106,6 +114,9 @@ const shareToFacebook = () => {
               </button>
               <button @click="shareToFacebook" class="text-blue-600 hover:text-blue-700 dark:bg-gray-700 bg-gray-200 rounded-lg py-1 px-2">
                 <i class="fab fa-facebook-f"></i>
+              </button>
+              <button @click="copyToClipboard" class="text-gray-200 hover:text-gray-300 dark:bg-gray-700 bg-gray-200 rounded-lg py-1 px-2">
+                <i class="fa-solid fa-link"></i>
               </button>
             </div>
           </p>
