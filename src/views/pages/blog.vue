@@ -104,9 +104,6 @@ const shareToFacebook = () => {
               <button @click="shareToWhatsApp" class="text-green-500 hover:text-green-600 dark:bg-gray-700 bg-gray-200 rounded-lg py-1 px-2">
                 <i class="fab fa-whatsapp"></i>
               </button>
-              <button @click="shareToInstagram" class="text-pink-500 hover:text-pink-600 dark:bg-gray-700 bg-gray-200 rounded-lg py-1 px-2">
-                <i class="fab fa-instagram"></i>
-              </button>
               <button @click="shareToFacebook" class="text-blue-600 hover:text-blue-700 dark:bg-gray-700 bg-gray-200 rounded-lg py-1 px-2">
                 <i class="fab fa-facebook-f"></i>
               </button>
