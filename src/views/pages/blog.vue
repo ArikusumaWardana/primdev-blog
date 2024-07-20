@@ -63,14 +63,11 @@ watch(() => route.params.slug, (newSlug) => {
   getBlogDetail();
 });
 
-const shareUrl = 'https://example.com/blog/the-future-of-web-development';
+const shareUrl = 'https://primdev-blog.vercel.app/blog/' + slug.value;
+console.log(shareUrl)
 
 const shareToWhatsApp = () => {
   window.open(`https://api.whatsapp.com/send?text=${shareUrl}`, '_blank');
-};
-
-const shareToInstagram = () => {
-  alert('Instagram does not support direct sharing from web. You can copy the URL and share it manually.');
 };
 
 const shareToFacebook = () => {

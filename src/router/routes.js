@@ -16,9 +16,6 @@ const routes = [
     path: '/',
     name: 'home',
     component: UserTemplates,
-    meta: {
-      isAuth: true
-    },
     children: [
       {
         path: '/',
