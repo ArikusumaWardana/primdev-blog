@@ -131,7 +131,6 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.isAuth)) {
     let user = localStorage.getItem('token')
     if (!user) {
-      alert('Login first!')
       next('auth/login');
     } 
   }
