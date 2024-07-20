@@ -61,7 +61,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <router-link v-show="router !== 'dashboard'" :to="props.route" class="card flex flex-col sm:flex-row dark:bg-gray-800 bg-gray-100 p-4 rounded-lg shadow-md">
+    <router-link v-show="router !== 'dashboard-page'" :to="props.route" class="card flex flex-col sm:flex-row dark:bg-gray-800 bg-gray-100 p-4 rounded-lg shadow-md">
         <img :src="props.image" :alt="props.title" class="w-full sm:w-1/3 h-48 sm:h-full object-cover rounded-lg mr-0 sm:mr-4 mb-4 sm:mb-0">
         <div class="w-full sm:w-2/3">
             <h3 class="text-xl font-semibold mb-2 dark:text-white">{{ props.title }}</h3>
@@ -69,7 +69,7 @@ onMounted(() => {
         </div>
     </router-link>
 
-    <div v-show="router == 'dashboard'" class="card dark:bg-gray-800 bg-gray-100 p-4 rounded-lg shadow-md">
+    <div v-show="router == 'dashboard-page'" class="card dark:bg-gray-800 bg-gray-100 p-4 rounded-lg shadow-md">
         <div class="flex flex-col sm:flex-row">
             <img :src="props.image" :alt="props.title" class="w-full sm:w-1/3 h-48 sm:h-full object-cover rounded-lg mr-0 sm:mr-4 mb-4 sm:mb-0">
             <div class="w-full sm:w-2/3">
