@@ -127,14 +127,19 @@ router.afterEach(() => {
 });
 
 router.beforeEach((to, from, next) => {
+  // Check if the route requires authentication
   if (to.matched.some((record) => record.meta.isAuth)) {
     let user = localStorage.getItem('token')
-    // console.log(user);
     if (!user) {
       alert('Login first!')
       next('auth/login');
     } 
   }
+
+  if (to.meta && to.meta.title) {
+    document.title = to.meta.title + ' | Primdev Blog';
+  }
+
   next()
 });
 
