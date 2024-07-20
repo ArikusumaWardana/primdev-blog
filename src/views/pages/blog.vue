@@ -19,6 +19,7 @@ const getBlogDetail = async () => {
     const response = await axios.get(BASE_URL + 'blog/' + slug.value);
     if (response.status === 200) {
       blogDetail.value = response.data;
+      document.title = blogDetail.value.title + ' | Primdev Blog'
       await getRelatedBlogs();
       await getRandomBlogs();
     }
