@@ -1,9 +1,10 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import Logo from '@/assets/logo/logo.png';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 
 const router = useRouter();
+const route = useRoute();
 const isMenuOpen = ref(false);
 const isDarkMode = ref(false);
 const isScrolled = ref(false);
@@ -71,7 +72,6 @@ onBeforeUnmount(() => {
 });
 </script>
 
-
 <template>
   <nav :class="['fixed top-0 w-full z-50 transition-colors duration-300', isScrolled ? 'dark:bg-gray-800 bg-gray-100' : 'bg-transparent']">
     <div class="container mx-auto px-4 flex justify-between items-center py-4 text-white">
@@ -83,7 +83,15 @@ onBeforeUnmount(() => {
 
       <!-- Middle section: Menu items -->
       <div class="hidden md:flex space-x-4">
-        <router-link v-for="(data, index) in navMenu" :key="index" :to="data.route" class="px-4 py-2 rounded dark:text-white text-gray-500 hover:bg-blue-600 hover:text-white">{{ data.name }}</router-link>
+        <router-link 
+          v-for="(data, index) in navMenu" 
+          :key="index" 
+          :to="data.route" 
+          class="px-4 py-2 rounded dark:text-white text-gray-500 hover:bg-blue-600 hover:text-white"
+          :class="{ 'bg-blue-600 rounded text-white': route.path === data.route }"
+        >
+          {{ data.name }}
+        </router-link>
       </div>
 
       <!-- Right section: Search form, dark mode toggle, and user dropdown -->
@@ -139,7 +147,8 @@ onBeforeUnmount(() => {
         </form>
       </div>
       <div v-for="(data, index) in navMenu" :key="index" class="flex items-center px-4 py-2 hover:bg-gray-700">
-        <router-link :to="data.route" class="flex items-center space-x-2 w-full">
+        <router-link 
+          :to="data.route" class="flex items-center space-x-2 w-full">
           <i :class="data.icon"></i>
           <span>{{ data.name }}</span>
         </router-link>
