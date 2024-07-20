@@ -17,6 +17,12 @@ const previewImage = ref(null)
 const router = useRouter()
 
 const createBlog = async () => {
+  // check apakah user sudah mengisi input
+  if (!inputData.title || !inputData.content || !inputData.image) {
+    alert('Please fill in all fields.');
+    return;
+  }
+
   // set loading jadi true
   isLoading.value = true
 
@@ -37,6 +43,7 @@ const createBlog = async () => {
     // handle data jika berhasil dikirim
     if (response.status === 200 || response.status === 201) {
       isLoading.value = false
+      alert('Success add blog!')
       router.push('/dashboard')
     }
   } catch (error) {

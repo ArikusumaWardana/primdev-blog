@@ -59,6 +59,7 @@ const updateBlog = async () => {
     // handle data jika berhasil dikirim
     if (response.status === 200 || response.status === 201) {
       isLoading.value = false
+      alert('Success update blog!')
       router.push('/dashboard')
     }
   } catch (error) {
