@@ -13,13 +13,13 @@
   const isLoading = ref(false)
 
   const login = async () => {
-    isLoading.value = true
-
     // Check for empty fields
     if (!inputData.email || !inputData.password) {
       alert('All fields are required!');
       return;
     }
+
+    isLoading.value = true
 
     try {
       const response = await axios.post(BASE_URL + 'login', inputData)
@@ -29,7 +29,8 @@
         router.push('/')
       }
     } catch(error) {
-      console.log(error)
+      console.error('Error response:', error.response);
+      console.error('Error message:', error.message);
     } finally {
       isLoading.value = false
     }
