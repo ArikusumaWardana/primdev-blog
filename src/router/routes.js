@@ -1,3 +1,4 @@
+import { createRouter, createWebHistory } from 'vue-router'
 import Login from '@/views/pages/auth/login.vue'
 import Register from '@/views/pages/auth/register.vue'
 import Home from '@/views/pages/home.vue'
@@ -10,18 +11,18 @@ import updateBlog from '@/views/pages/author/updateBlog.vue'
 import AuthTemplates from '@/views/templates/authTemplates.vue'
 import AuthorTemplates from '@/views/templates/authorTemplates.vue'
 import UserTemplates from '@/views/templates/userTemplates.vue'
-import { createRouter, createWebHistory } from 'vue-router'
+
 const routes = [
   {
     path: '/',
     name: 'home',
     component: UserTemplates,
     meta: {
-      isAuth: true
+      requiresAuth: true
     },
     children: [
       {
-        path: '/',
+        path: '',
         name: 'home-page',
         component: Home,
         meta: {
@@ -60,19 +61,19 @@ const routes = [
     name: 'dashboard',
     component: AuthorTemplates,
     meta: {
-      isAuth: true
+      requiresAuth: true
     },
     children: [
       {
-        path: '/dashboard',
-        name: 'dashboard',
+        path: '',
+        name: 'dashboard-page',
         component: Dashboard,
         meta: {
           title: 'Dashboard'
         }
       },
       {
-        path: '/dashboard/blog/create',
+        path: 'blog/create',
         name: 'create-blog',
         component: createBlog,
         meta: {
@@ -80,7 +81,7 @@ const routes = [
         }
       },
       {
-        path: '/dashboard/blog/update/:slug',
+        path: 'blog/update/:slug',
         name: 'update-blog',
         component: updateBlog,
         meta: {
@@ -94,11 +95,11 @@ const routes = [
     name: 'auth',
     component: AuthTemplates,
     meta: {
-      isAuth: false
+      requiresGuest: true
     },
     children: [
       {
-        path: '/auth/login',
+        path: 'login',
         name: 'login-page',
         component: Login,
         meta: {
@@ -106,14 +107,14 @@ const routes = [
         }
       },
       {
-        path: '/auth/register',
+        path: 'register',
         name: 'register-page',
         component: Register,
         meta: {
           title: 'Register'
         }
       }
-    ] 
+    ]
   }
 ]
 
@@ -127,21 +128,20 @@ router.afterEach(() => {
 });
 
 router.beforeEach((to, from, next) => {
-  // Check if the route requires authentication
-  if (to.matched.some((record) => record.meta.isAuth)) {
-    let user = localStorage.getItem('token')
-    if (!user) {
-      alert('Login first!')
-      next('auth/login');
-    } 
+  const user = localStorage.getItem('token');
+
+  if (to.matched.some(record => record.meta.requiresAuth) && !user) {
+    alert('Login first!');
+    next('/auth/login');
+  } else if (to.matched.some(record => record.meta.requiresGuest) && user) {
+    next('/dashboard');
+  } else {
+    next();
   }
 
   if (to.meta && to.meta.title) {
     document.title = to.meta.title + ' | Primdev Blog';
   }
-
-  next()
 });
 
-
-export default router
+export default router;
